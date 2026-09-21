@@ -2,6 +2,8 @@ import "dotenv/config"
 import { generateText, type ModelMessage } from "ai"
 import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { SYSTEM_PROMPT } from "./system/prompt"
+import { tools } from "./tools/index.ts"
+import { executeTool } from "./executeTools.ts"
 import type { AgentCallbacks } from "../types"
 
 const MODEL_NAME = "openai/gpt-5-mini"
@@ -12,15 +14,20 @@ const openrouter = createOpenRouter({
 
 
 export const runAgent = async (userMessage: string, conversationHistory: ModelMessage[], callbacks: AgentCallbacks) => {
-  const { text} = await generateText({
+  const { text, toolCalls} = await generateText({
     model: openrouter(MODEL_NAME),
     prompt: userMessage,
-    system:SYSTEM_PROMPT
+    system: SYSTEM_PROMPT,
+    tools
   })
 
-  console.log(text)
+  console.log(text, toolCalls)
+
+  toolCalls.forEach(async (tc) => {
+    console.log(await executeTool(tc.toolName, tc.input))
+  })
 
 }
 
 
-runAgent("hello can you hear me ")
+runAgent("whats the current time right now ")
