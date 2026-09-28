@@ -3,8 +3,14 @@ import { generateText, type ModelMessage } from "ai"
 import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { SYSTEM_PROMPT } from "./system/prompt"
 import { tools } from "./tools/index.ts"
-import { executeTool } from "./executeTools.ts"
+
 import type { AgentCallbacks } from "../types"
+
+import { Laminar } from "@lmnr-ai/lmnr"
+
+Laminar.initialize({
+  projectApiKey:process.env.LMNR_PROJECT_API_KEY!
+})
 
 const MODEL_NAME = "openai/gpt-5-mini"
 
@@ -14,20 +20,20 @@ const openrouter = createOpenRouter({
 
 
 export const runAgent = async (userMessage: string, conversationHistory: ModelMessage[], callbacks: AgentCallbacks) => {
-  const { text, toolCalls} = await generateText({
+  const { text} = await generateText({
     model: openrouter(MODEL_NAME),
     prompt: userMessage,
     system: SYSTEM_PROMPT,
     tools
   })
 
-  console.log(text, toolCalls)
+  console.log("done")
 
-  toolCalls.forEach(async (tc) => {
-    console.log(await executeTool(tc.toolName, tc.input))
-  })
+  // toolCalls.forEach(async (tc) => {
+  //   console.log(await executeTool(tc.toolName, tc.input))
+  // })
 
 }
 
 
-runAgent("whats the current time right now ")
+// runAgent("whats the current time right now ")
