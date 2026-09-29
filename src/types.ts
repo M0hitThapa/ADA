@@ -1,10 +1,10 @@
 export interface AgentCallbacks {
   onToken: (token: string) => void;
-  onToolCallStart: (name: string, args: unknown) => void;
-  onToolCallEnd: (name: string, result: string) => void;
+  // onToolCallStart: (name: string, args: unknown) => void;
+  // onToolCallEnd: (name: string, result: string) => void;
   onComplete: (response: string) => void;
-  onToolApproval: (name: string, args: unknown) => void;
-  onTokenUsage:(usage:TokenUsageInfo) => void
+  // onToolApproval: (name: string, args: unknown) => void;
+  // onTokenUsage:(usage:TokenUsageInfo) => void
 }
 
 
