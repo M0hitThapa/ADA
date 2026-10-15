@@ -8,6 +8,7 @@ import {
 } from "./components/message-list.tsx";
 import { runAgent } from "../agent/run.ts";
 import type { ModelMessage } from "ai";
+import { Banner } from "./components/banner.tsx";
 
 export const App = () => {
   const { exit } = useApp();
@@ -42,6 +43,7 @@ export const App = () => {
 
       setIsLoading(true);
       setStreamingText("");
+
 
       try {
         const newHistory = await runAgent(
@@ -91,9 +93,8 @@ export const App = () => {
 
   return (
     <Box flexDirection="column" padding={1}>
-      <Text bold color="magenta">
-        🤖 AI Agent
-      </Text>
+      <Banner />
+
 
 
       <Box flexDirection="column" marginBottom={1}>
@@ -119,7 +120,7 @@ export const App = () => {
         )}
            </Box>
 
-      <Box marginTop={1}>
+      <Box >
         <Input
           onSubmit={handleSubmit}
           disabled={isLoading}

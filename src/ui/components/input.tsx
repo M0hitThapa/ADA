@@ -28,7 +28,8 @@ export const Input = ({onSubmit, disabled = false}:InputProps) => {
     }
   })
   return (
-    <Box>
+    <Box borderStyle="round" borderColor="grey"  width="100%"  borderLeft={false}
+     borderRight={false}>
        <Text color="blue" bold>
          {'> '}
        </Text>

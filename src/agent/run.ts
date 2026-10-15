@@ -12,7 +12,7 @@ Laminar.initialize({
   projectApiKey:process.env.LMNR_PROJECT_API_KEY!
 })
 
-const MODEL_NAME = "openai/gpt-5-mini"
+const MODEL_NAME = "deepseek/deepseek-v4.1-flash"
 
 const openrouter = createOpenRouter({
   apiKey:process.env.NEXT_PUBLIC_OPENROUTER_API_KEY!
