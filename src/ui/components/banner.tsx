@@ -20,7 +20,7 @@ const ART_WIDTH = Math.max(...ART.split("\n").map((l) => l.length));
 
 export function Banner() {
   return (
-    <Box alignItems="flex-end">
+    <Box alignItems="flex-end" marginBottom={1}>
       <Box width={OWL_WIDTH}  marginRight={1}>
         <Text color="cyan">{OWL}</Text>
       </Box>

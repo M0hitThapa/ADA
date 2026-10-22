@@ -13,14 +13,11 @@ export const MessageList = ({messages}:MessageListProps) => {
   return (
     <Box flexDirection="column" gap={1}>
       {messages.map((message,index) => (
-        <Box key={index} flexDirection="column">
-          <Text color={message.role === "user" ? "blue" : "green"}>
-            {message.role === "user" ? "> You" :"> Assistant"}
-          </Text>
-          <Box marginLeft={2}>
+        <Box key={index} flexDirection="column"   backgroundColor={message.role === "user" ? "#262626" : undefined} paddingX={1} paddingY={message.role === "user" ? 1 : 0}>
+
           <Text>{message.content}</Text>
           </Box>
-        </Box>
+
 ))}
 </Box>
   )
