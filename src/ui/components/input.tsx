@@ -60,6 +60,7 @@ export const Input = ({
       width="100%"
       borderLeft={false}
       borderRight={false}
+      paddingX={1}
     >
       <Text color="blue" bold>
         {"> "}

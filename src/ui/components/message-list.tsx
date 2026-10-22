@@ -1,24 +1,49 @@
-import { Box, Text } from "ink"
+import { Box, Text } from "ink";
 
 export interface Message {
-  role: "user" | "assistant"
-  content:string
+  role: "user" | "assistant";
+  content: string;
 }
 
 interface MessageListProps {
-  messages:Message[]
+  messages: Message[];
 }
 
-export const MessageList = ({messages}:MessageListProps) => {
+export const MessageList = ({ messages }: MessageListProps) => {
   return (
     <Box flexDirection="column" gap={1}>
-      {messages.map((message,index) => (
-        <Box key={index} flexDirection="column"   backgroundColor={message.role === "user" ? "#262626" : undefined} paddingX={1} paddingY={message.role === "user" ? 1 : 0}>
+      {messages.map((message, index) => {
+        const isUser = message.role === "user";
 
-          <Text>{message.content}</Text>
+        if (isUser) {
+          return (
+            <Box
+              key={index}
+              backgroundColor="#171717"
+              paddingY={1}
+              paddingX={1}
+            >
+              <Box flexShrink={0} width={2}>
+                <Text color="whiteBright">➤</Text>
+              </Box>
+              <Box flexGrow={1} flexDirection="column" paddingX={1}>
+                <Text color="whiteBright">{message.content}</Text>
+              </Box>
+            </Box>
+          );
+        }
+
+        return (
+          <Box key={index} paddingX={1}>
+            <Box flexShrink={0} width={2}>
+              <Text color="cyanBright">◉</Text>
+            </Box>
+            <Box flexGrow={1} flexDirection="column" paddingX={1}>
+              <Text color="white">{message.content}</Text>
+            </Box>
           </Box>
-
-))}
-</Box>
-  )
-}
+        );
+      })}
+    </Box>
+  );
+};

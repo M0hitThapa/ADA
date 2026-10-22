@@ -114,7 +114,7 @@ export const App = () => {
 
 
       {isLoading && (
-        <Box marginTop={1}>
+        <Box marginTop={1} paddingX={1}>
           <Spinner />
         </Box>
         )}
