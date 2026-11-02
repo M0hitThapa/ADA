@@ -68,10 +68,10 @@ export const Input = ({
       {value.length === 0 ? (
         <Text>
           {!disabled && <Text inverse> </Text>}
-          <Text dimColor>{placeholder}</Text>
+          <Text color="#a3a3a3">{placeholder}</Text>
         </Text>
       ) : (
-        <Text>
+        <Text color={"white"}>
           {" "}
           {before}
           {!disabled ? <Text inverse>{current}</Text> : current}
